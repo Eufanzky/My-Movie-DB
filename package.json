@@ -1,0 +1,19 @@
+{
+  "name": "my-movie-db",
+  "version": "1.0.0",
+  "description": "Website of movie, using HTML, CSS, JavaScript and Asynchronous JS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eufanzky/My-Movie-DB.git"
+  },
+  "author": "Eufanzky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eufanzky/My-Movie-DB/issues"
+  },
+  "homepage": "https://github.com/Eufanzky/My-Movie-DB#readme"
+}
