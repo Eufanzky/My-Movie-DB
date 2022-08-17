@@ -1,13 +1,14 @@
-searchFormBtn.addEventListener('click', () => {
-    location.hash = '#search=';
-  });
+searchFormBtn.addEventListener('click', () => {    
+    location.hash = '#search=' + searchFormInput.value;
+});
 
 trendingBtn.addEventListener('click', () => {
     location.hash = '#trends';
 });
 
 arrowBtn.addEventListener('click' , () => {
-    location.hash = '#home';
+    history.back();
+    // location.hash = '#home';
 });
 
 window.addEventListener('DOMContentLoaded', navigator, false);
@@ -44,6 +45,10 @@ function trendsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    headerCategoryTitle.innerHTML = 'Tendencias';
+    
+    getTrendingMovies();
 }
 function searchPage() {
     console.log('Search!!');
@@ -53,13 +58,17 @@ function searchPage() {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
   
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    // ['#category', 'id-name']
+    const [_, query] = location.hash.split('='); 
+    getMoviesBySearch(query);
 }
 function movieDetailsPage() {
     console.log('Movie!!');
@@ -76,6 +85,12 @@ function movieDetailsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
+
+    // ['#category', 'id-name']
+    const [_, movieId] = location.hash.split('='); 
+    getMovieById(movieId);
+
+
 }
 function categoriesPage() {
     console.log('categories!!');
@@ -93,7 +108,12 @@ function categoriesPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
-    getMoviesByCategory();
+    const [_, categoryData] = location.hash.split('='); // ['#category', 'id-name']
+    const [categoryId, categoryName] = categoryData.split('-');
+
+    headerCategoryTitle.innerHTML = categoryName;
+
+    getMoviesByCategory(categoryId);
 }
 function homePage() {
     console.log('Home!!');
